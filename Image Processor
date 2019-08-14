@@ -1,4 +1,4 @@
-//201433718 È«°Ç¼ö
+
 #include<iostream>
 #include <opencv2\highgui.hpp>
 #include<math.h>
@@ -35,7 +35,7 @@ void showOriginalImg() {
 	imshow("image", img);
 	isHSV = false;
 }
-string type2str(int type) { //command ½ÇÇà ÀÌÈÄ img type È®ÀÎ
+string type2str(int type) { //command ì‹¤í–‰ ì´í›„ img type í™•ì¸
 	string r;
 
 	uchar depth = type & CV_MAT_DEPTH_MASK;
@@ -64,9 +64,9 @@ void bright() {
 	double dBri;
 	cin >> dBri;
 	
-	img.convertTo(img, -1, 1, dBri); //2¹øÂ° ÀÎÀÚ°¡ À½¼ö¸é °á°ú´Â ¿øº»°ú °°Àº Å¸ÀÔ
-	//¼¼¹øÂ° ÀÎÀÚ´Â scale factor(optional)
-	//³×¹øÂ° ÀÎÀÚ´Â ¹à±â º¯È­
+	img.convertTo(img, -1, 1, dBri); //2ë²ˆì§¸ ì¸ìê°€ ìŒìˆ˜ë©´ ê²°ê³¼ëŠ” ì›ë³¸ê³¼ ê°™ì€ íƒ€ì…
+	//ì„¸ë²ˆì§¸ ì¸ìëŠ” scale factor(optional)
+	//ë„¤ë²ˆì§¸ ì¸ìëŠ” ë°ê¸° ë³€í™”
 	imshow("image", img);
 }
 
@@ -77,7 +77,7 @@ void gamma() {
 	
 	CV_Assert(gam >= 0);
 	if (gam < 0 || gam > 2.0) {
-		cout << "gamma ¹üÀ§ 0ÀÌ»ó 2ÀÌÇÏ\n";
+		cout << "gamma ë²”ìœ„ 0ì´ìƒ 2ì´í•˜\n";
 		return;
 	}
 	Mat lookUpTable(1, 256, CV_8U);
@@ -114,7 +114,7 @@ void cannyEdge() {
 }
 
 
-void blurFunction() { //Ä¿³Î »çÀÌÁî·Î Â¦¼ö ³ÖÀ¸¸é ÅÍÁü
+void blurFunction() { //ì»¤ë„ ì‚¬ì´ì¦ˆë¡œ ì§ìˆ˜ ë„£ìœ¼ë©´ í„°ì§
 	int kernelSize;
 	cout << "blur kernel size? ";
 	cin >> kernelSize;
@@ -169,7 +169,7 @@ void rotateColor() {
 
 		}
 	}
-	cvtColor(img, img, COLOR_HSV2RGB); //´Ù½Ã ¹Ù²ã¼­ Ãâ·Â
+	cvtColor(img, img, COLOR_HSV2RGB); //ë‹¤ì‹œ ë°”ê¿”ì„œ ì¶œë ¥
 	imshow("image", img);
 }
 void comment() {
@@ -188,7 +188,7 @@ int main(void) {
 		cout << "command? ";
 		cin >> cmd;
 
-		if (cmd == 1) { // ¿øº»À¸·Î
+		if (cmd == 1) { // ì›ë³¸ìœ¼ë¡œ
 		
 			showOriginalImg();
 
@@ -197,7 +197,7 @@ int main(void) {
 			//string ty = type2str(img.type());
 			//printf("Matrix: %s %dx%d \n", ty.c_str(), img.cols, img.rows);
 		}
-		else if (cmd == 2) { //¹à±â Áõ°¡
+		else if (cmd == 2) { //ë°ê¸° ì¦ê°€
 			bright();
 			/*cout << img.channels() << '\n';
 			cout << img.depth() << '\n';*/
@@ -211,16 +211,16 @@ int main(void) {
 			//string ty = type2str(img.type());
 			//printf("Matrix: %s %dx%d \n", ty.c_str(), img.cols, img.rows);
 		}
-		else if (cmd == 4) { //edge detection. type casting ÇÏ´Â ¹æ¹ı Ã£¾Æ¾ßÇÔ
+		else if (cmd == 4) { //edge detection. type casting í•˜ëŠ” ë°©ë²• ì°¾ì•„ì•¼í•¨
 		
 			cvtColor(img, grayImg, COLOR_BGR2GRAY);
 			cannyEdge();
-			//cout << img.channels() << '\n'; //1, 2, 3ÀÌ¶û type ÀÌ ´Ù¸£°Ô³ª¿È
+			//cout << img.channels() << '\n'; //1, 2, 3ì´ë‘ type ì´ ë‹¤ë¥´ê²Œë‚˜ì˜´
 			//cout << img.depth() << '\n';
 			//string ty = type2str(img.type());
 			//printf("Matrix: %s %dx%d \n", ty.c_str(), img.cols, img.rows);
 		}
-		else if (cmd == 5) { //blur ¾î¶²°Å ½áµµ »ó°ü¾ø´Âµ¥, kernel size Áõ°¡ÇÏ¸é blur°¡ ´õ ¸¹ÀÌ µÇ¾î¾ß ÇÑ´Ù
+		else if (cmd == 5) { //blur ì–´ë–¤ê±° ì¨ë„ ìƒê´€ì—†ëŠ”ë°, kernel size ì¦ê°€í•˜ë©´ blurê°€ ë” ë§ì´ ë˜ì–´ì•¼ í•œë‹¤
 			blurFunction();
 			//string ty = type2str(img.type());
 			//printf("Matrix: %s %dx%d \n", ty.c_str(), img.cols, img.rows);
